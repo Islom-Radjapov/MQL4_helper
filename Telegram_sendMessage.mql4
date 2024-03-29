@@ -1,0 +1,25 @@
+// ----------------------------------------------------  TELEGRAM -----------------------------------------------------------------------
+double chat_id[3] = {5294408795, 6827944493, 20023329100};
+const string Token = "Sample";
+const string URL = "https://api.telegram.org";
+
+
+void OnTick() {
+
+   for (int x = 0; x < ArraySize(chat_id); x++) {
+      SendMessage(chat_id[x], "Sample text");
+   }
+}
+
+
+bool SendMessage(double id, string text) {
+   
+   char postData[];
+   char resultData[];
+   string resultHeaders;
+   int response;
+   
+   string requestUrl = URL + "/bot" + Token + "/sendMessage?chat_id=" + id + "&text=" + text;
+   response = WebRequest("POST", requestUrl, NULL, 1000, postData, resultData, resultHeaders);
+   return (response == 200);
+}
