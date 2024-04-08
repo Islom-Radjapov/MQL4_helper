@@ -1,0 +1,23 @@
+void TrelingStoploss() {
+   for (x = 0; x < OrdersTotal(); x++) {
+      if (OrderSelect(x, SELECT_BY_POS, MODE_TRADES)) {
+         
+         if (OrderType() == OP_SELL) {
+            if (OrderStopLoss() == 0) {			
+      		   ticket = OrderModify(OrderTicket(), OrderOpenPrice(), Ask, OrderTakeProfit(), 0, clrBlue);
+      		} else if (OrderStopLoss() > Ask) {			
+      		   ticket = OrderModify(OrderTicket(), OrderOpenPrice(), Ask, OrderTakeProfit(), 0, clrBlue);
+      		}
+      	}
+      
+         else if (OrderType() == OP_BUY) {
+      		if (OrderStopLoss() == 0) {					   
+      		   ticket = OrderModify(OrderTicket() ,OrderOpenPrice(), Bid, OrderTakeProfit(), 0, clrRed);
+      		} else if (OrderStopLoss() < Bid) {					   
+      		   ticket = OrderModify(OrderTicket() ,OrderOpenPrice(), Bid, OrderTakeProfit(), 0, clrRed);
+      		}
+         	
+         }
+      }
+   } 
+}
