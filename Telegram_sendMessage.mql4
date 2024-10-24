@@ -13,7 +13,7 @@ void OnTick() {
 
 
 bool SendMessage(double id, string text) {
-   
+   // text ichida \n yozish mumkin emas, agar yozilsa 401 xato qaytaradi
    char postData[];
    char resultData[];
    string resultHeaders;
